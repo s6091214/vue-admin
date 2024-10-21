@@ -5,15 +5,8 @@
       <el-icon v-else><Close /></el-icon>
     </el-button>
 
-    <!-- 動態顯示麵包屑 -->
-    <el-breadcrumb :separator-icon="ArrowRight">
-      <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="index">
-        <span v-if="index === breadcrumbs.length - 1">{{
-          item.meta.title
-        }}</span>
-        <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
-      </el-breadcrumb-item>
-    </el-breadcrumb>
+    <!-- 麵包屑 -->
+    <Breadcrumb />
   </div>
 
   <div class="relative flex items-center">
@@ -51,9 +44,10 @@
 import { ElButton, ElIcon } from "element-plus";
 import { Menu, Close } from "@element-plus/icons-vue";
 import { useI18n } from "vue-i18n";
-import { useRoute, useRouter } from "vue-router";
-import { ref, watch, onMounted } from "vue";
-import { ArrowRight } from "@element-plus/icons-vue";
+import { useRoute } from "vue-router";
+import { ref } from "vue";
+
+import Breadcrumb from "@/components/Breadcrumb.vue";
 
 const { locale } = useI18n();
 
@@ -64,7 +58,6 @@ const props = defineProps({
 const emits = defineEmits(["toggle-aside"]);
 
 const route = useRoute();
-const router = useRouter();
 
 /** 語言列表 */
 const languages = [
@@ -75,31 +68,6 @@ const languages = [
 /** 切換語言 */
 const changeLanguage = (val) => {
   locale.value = val;
-};
-
-const breadcrumbs = ref([]);
-
-// 更新麵包屑
-const updateBreadcrumbs = (route) => {
-  breadcrumbs.value = route.matched
-    .filter((item) => item.meta && item.meta.title)
-    .map((item) => ({
-      title: item.meta.title,
-      meta: item.meta,
-    }));
-};
-
-// 監聽路由變化以更新麵包屑
-watch(route, (newRoute) => {
-  updateBreadcrumbs(newRoute);
-});
-
-onMounted(() => {
-  updateBreadcrumbs(route);
-});
-
-const handleLink = (item) => {
-  router.push(item.path);
 };
 </script>
 

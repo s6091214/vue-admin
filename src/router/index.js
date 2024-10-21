@@ -13,15 +13,17 @@ const router = createRouter({
           path: "dashboard",
           name: "Dashboard",
           component: () => import("@/views/Dashboard.vue"),
-          meta: { title: "Dashboard", breadcrumb: ["home"] },
+          meta: { breadcrumb: [{ title: "home", path: "/" }] },
         },
         {
           path: "documentation",
           name: "Documentation",
           component: () => import("@/views/Documentation.vue"),
           meta: {
-            title: "Documentation",
-            breadcrumb: ["home", "documentation"],
+            breadcrumb: [
+              { title: "home", path: "/" },
+              { title: "documentation", path: "/documentation" },
+            ],
           },
         },
         {
@@ -29,8 +31,10 @@ const router = createRouter({
           name: "BackendReference",
           component: () => import("@/views/BackendReference.vue"),
           meta: {
-            title: "Backend Reference",
-            breadcrumb: ["home", "backendReference"],
+            breadcrumb: [
+              { title: "home", path: "/" },
+              { title: "backendReference", path: "/backendReference" },
+            ],
           },
         },
       ],
