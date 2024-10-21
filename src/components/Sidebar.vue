@@ -66,7 +66,7 @@ const asideStyle = computed(() => {
     // 桌面版
     return {
       left: "0px",
-      width: props.isCollapse ? "64px" : "200px",
+      width: props.isCollapse ? "96px" : "200px",
       position: "static",
     };
   }
