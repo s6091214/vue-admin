@@ -1,0 +1,18 @@
+{
+  "welcomeBack": "Welcome Back",
+  "username": "Username",
+  "password": "Password",
+  "login": "Login",
+  "loginSuccess": "Login Successful",
+  "loginError": "Incorrect username or password",
+  "fillCredentials": "Please fill in the username and password",
+  "documentation": "Documentation",
+  "example": "Example",
+  "personalCenter": "Personal Center",
+  "logout": "Logout",
+  "settings": "Settings",
+  "help": "Help",
+  "backendReference": "Backend Reference",
+  "selectLanguage": "Select Language",
+  "home": "Home"
+}
