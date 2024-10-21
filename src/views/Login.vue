@@ -25,7 +25,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" class="w-full" @click="login">
+          <el-button type="primary" class="w-full" @click="handleLogin">
             {{ $t("login") }}
           </el-button>
         </el-form-item>
@@ -39,20 +39,37 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { useI18n } from "vue-i18n";
+import { login, getUser } from "@/services/api";
 
 const { t } = useI18n();
 const router = useRouter();
 const username = ref("admin");
 const password = ref("123456");
 
-const login = () => {
+const handleLogin = async () => {
   if (username.value && password.value) {
-    if (username.value === "admin" && password.value === "123456") {
-      ElMessage.success(t("loginSuccess"));
-      router.push("/documentation");
-    } else {
-      ElMessage.error(t("loginError"));
+    try {
+      // const res = await getUser();
+
+      const response = await fetch("http://localhost:3456/api/user");
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.log(error);
     }
+
+    // try {
+    //   // const response = await login({
+    //   //   username: username.value,
+    //   //   password: password.value,
+    //   // });
+    //   // console.log(response);
+    //   // ElMessage.success(t("loginSuccess"));
+    //   // router.push("/documentation");
+    // } catch (error) {
+    //   ElMessage.error(t("loginError"));
+    // }
   } else {
     ElMessage.warning(t("fillCredentials"));
   }

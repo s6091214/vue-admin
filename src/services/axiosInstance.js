@@ -2,8 +2,12 @@ import axios from "axios";
 
 // 創建 Axios 實例
 const axiosInstance = axios.create({
-  baseURL: process.env.VUE_APP_API_BASE_URL, // 替換為你的 API 基礎 URL
-  timeout: 10000, // 設置請求超時時間
+  baseURL: import.meta.env.VITE_API_URL, // 替換為你的 API 基礎 URL
+  timeout: 600000, // 設置請求超時時間
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 // 添加請求攔截器
