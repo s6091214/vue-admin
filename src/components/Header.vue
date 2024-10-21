@@ -33,7 +33,9 @@
           <el-dropdown-item>{{ $t("personalCenter") }}</el-dropdown-item>
           <el-dropdown-item>{{ $t("settings") }}</el-dropdown-item>
           <el-dropdown-item>{{ $t("help") }}</el-dropdown-item>
-          <el-dropdown-item>{{ $t("logout") }}</el-dropdown-item>
+          <el-dropdown-item @click="handleLogout">{{
+            $t("logout")
+          }}</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -44,8 +46,7 @@
 import { ElButton, ElIcon } from "element-plus";
 import { Menu, Close } from "@element-plus/icons-vue";
 import { useI18n } from "vue-i18n";
-import { useRoute } from "vue-router";
-import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 import Breadcrumb from "@/components/Breadcrumb.vue";
 
@@ -57,7 +58,7 @@ const props = defineProps({
 
 const emits = defineEmits(["toggle-aside"]);
 
-const route = useRoute();
+const router = useRouter();
 
 /** 語言列表 */
 const languages = [
@@ -68,6 +69,10 @@ const languages = [
 /** 切換語言 */
 const changeLanguage = (val) => {
   locale.value = val;
+};
+
+const handleLogout = () => {
+  router.push("/login");
 };
 </script>
 

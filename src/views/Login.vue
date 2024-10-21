@@ -42,8 +42,8 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 const router = useRouter();
-const username = ref("");
-const password = ref("");
+const username = ref("admin");
+const password = ref("123456");
 
 const login = () => {
   if (username.value && password.value) {
