@@ -1,13 +1,17 @@
 <template>
   <el-breadcrumb :separator-icon="ArrowRight">
     <transition-group name="breadcrumb">
-      <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="index">
-        <span v-if="index === breadcrumbs.length - 1">{{
-          $t(item.title)
-        }}</span>
-        <a v-else @click.prevent="navigateTo(item.path)">{{
-          $t(item.title)
-        }}</a>
+      <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="item.path">
+        <span v-if="index === breadcrumbs.length - 1" :key="item.path">
+          {{ $t(item.title) }}
+        </span>
+        <a
+          v-else
+          :key="item.path + '-link'"
+          @click.prevent="navigateTo(item.path)"
+        >
+          {{ $t(item.title) }}
+        </a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -44,8 +48,22 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.breadcrumb-active {
-  color: black;
-  cursor: default;
+/* 面包屑过渡动画 */
+.breadcrumb-enter-active {
+  transition: all 0.4s;
+}
+
+.breadcrumb-leave-active {
+  transition: all 0.3s;
+}
+
+.breadcrumb-enter-from,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
 }
 </style>

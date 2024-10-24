@@ -49,12 +49,10 @@ const password = ref("123456");
 const handleLogin = async () => {
   if (username.value && password.value) {
     try {
-      // const res = await getUser();
+      const res = await getUser();
 
-      const response = await fetch("http://localhost:3456/api/user");
-      const data = await response.json();
-
-      return data;
+      console.log(res);
+      // return data;
     } catch (error) {
       console.log(error);
     }

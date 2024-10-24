@@ -16,10 +16,12 @@
           <span v-if="!isCollapse">{{ $t("example") }}</span>
         </template>
         <router-link to="/documentation">
-          <el-menu-item index="1-1">{{ $t("documentation") }} </el-menu-item>
+          <el-menu-item index="2-1">
+            {{ $t("documentation") }}
+          </el-menu-item>
         </router-link>
         <router-link to="/backendReference">
-          <el-menu-item index="1-2">{{ $t("backendReference") }}</el-menu-item>
+          <el-menu-item index="2-2">{{ $t("backendReference") }}</el-menu-item>
         </router-link>
       </el-sub-menu>
     </el-menu>
